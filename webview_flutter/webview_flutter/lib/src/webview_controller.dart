@@ -344,6 +344,11 @@ class WebViewController {
     return platform.setBackgroundColor(color);
   }
 
+  /// Sets the temporary directory used by the WebView.
+  Future<void> setTemporaryDirectory(String path) {
+    return platform.setTemporaryDirectory(path);
+  }
+
   /// Sets the JavaScript execution mode to be used by the WebView.
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) {
     return platform.setJavaScriptMode(javaScriptMode);

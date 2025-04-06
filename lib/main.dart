@@ -22,12 +22,20 @@ class DisposableBrowserScreen extends StatefulWidget {
 
 class _DisposableBrowserScreenState extends State<DisposableBrowserScreen> {
   static const platform = MethodChannel('com.example.ghostbrowse/disposable');
-  static const webViewChannel = MethodChannel('webview_flutter');
+  // static const webViewChannel = MethodChannel('io.flutter.plugins.webviewflutter/webview_flutter');
   final TextEditingController _urlController = TextEditingController();
   String _status = "Ready";
   WebViewController? _webViewController;
   bool _isInstanceActive = false;
   String? _tempDir;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Initialize the WebView
+    _webViewController?.setTemporaryDirectory("test");
+  }
 
   Future<void> _startInstance() async {
     try {
@@ -36,15 +44,20 @@ class _DisposableBrowserScreenState extends State<DisposableBrowserScreen> {
         // Notify Kotlin to start isolated environment
         final Map<dynamic, dynamic> result = await platform.invokeMethod('startDisposableInstance', {'url': url});
         _tempDir = result['tempDir'];
-        await webViewChannel.invokeMethod('setTempDir', {'tempDir': _tempDir});
+        // _webViewController?.setTemporaryDirectory(_tempDir ?? "failed_to_get_temp_dir");
+        // await webViewChannel.invokeMethod('setTempDir', {'tempDir': _tempDir});
         setState(() {
           _status = result['message']; // "Instance started"
+          print(_status);
+          print("---------------------------------");
           _isInstanceActive = true;
           _webViewController?.loadRequest(Uri.parse(url)); // Load URL in Flutter WebView
         });
       }
     } catch (e) {
       setState(() => _status = "Error: $e");
+      print(_status);
+      print("---------------------------------");
     }
   }
 
@@ -98,6 +111,7 @@ class _DisposableBrowserScreenState extends State<DisposableBrowserScreen> {
               WebViewController()
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
                 ..setBackgroundColor(const Color(0xFFFFFFFF))
+                ..setTemporaryDirectory(_tempDir ?? "test")
                 ..setNavigationDelegate(
                   NavigationDelegate(
                     onPageStarted: (String url) {

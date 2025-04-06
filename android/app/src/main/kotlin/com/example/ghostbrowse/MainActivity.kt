@@ -29,7 +29,7 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private fun startDisposableInstance(url: String?) {
+    private fun startDisposableInstance(url: String?): String {
         val intent = Intent(this, IsolationService::class.java).apply {
             putExtra("URL", url)
         }

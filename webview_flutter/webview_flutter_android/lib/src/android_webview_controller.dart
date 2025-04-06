@@ -573,6 +573,14 @@ class AndroidWebViewController extends PlatformWebViewController {
       _webView.setBackgroundColor(color.value);
 
   @override
+  Future<void> setTemporaryDirectory(String? tempDir) async {
+    if (tempDir != null) {
+      // await _webView.setTemporaryDirectory(tempDir);
+      print(tempDir);
+    }
+  }
+
+  @override
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) =>
       _webView.settings
           .setJavaScriptEnabled(javaScriptMode == JavaScriptMode.unrestricted);

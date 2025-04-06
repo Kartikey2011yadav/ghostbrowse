@@ -249,6 +249,12 @@ abstract class PlatformWebViewController extends PlatformInterface {
         'setBackgroundColor is not implemented on the current platform');
   }
 
+  /// Sets the temporary directory used by the WebView.
+  Future<void> setTemporaryDirectory(String path) {
+    throw UnimplementedError(
+        'setTemporaryDirectory is not implemented on the current platform');
+  }
+
   /// Sets the JavaScript execution mode to be used by the webview.
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) {
     throw UnimplementedError(

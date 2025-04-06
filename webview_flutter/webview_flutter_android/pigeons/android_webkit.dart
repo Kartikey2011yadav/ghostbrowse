@@ -687,6 +687,10 @@ abstract class WebStorage {
 
   /// Clears all storage currently being used by the JavaScript storage APIs.
   void deleteAllData();
+
+  /// Sets a temporary directory suffix for WebView storage isolation.
+  /// This should be called before accessing storage to ensure the correct directory is used.
+  void setTemporaryDirectory(String tempDir);
 }
 
 /// Parameters used in the `WebChromeClient.onShowFileChooser` method.
