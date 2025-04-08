@@ -52,6 +52,7 @@ public class WebStorageProxyApi extends PigeonApiWebStorage {
         } else {
         android.util.Log.e("WebStorageProxy", "Failed to create WebStorage instance.");
     }
+    android.util.Log.e("WebStorageProxy", "Failed to set custom path.");
     return WebStorage.getInstance();
   }
 
