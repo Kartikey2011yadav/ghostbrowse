@@ -7,6 +7,7 @@ import java.io.File
 
 class IsolationService : Service() {
     private lateinit var tempDir: File
+    private lateinit var testDir: File
 
     companion object {
         var tempDirPath: String? = null
@@ -14,6 +15,9 @@ class IsolationService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        // Create a temp directory in the app's cache directory
+        testDir = File(cacheDir, "test")
+        testDir.mkdirs()
         // Create a unique temp directory for this instance
         tempDir = File(cacheDir, "isolation_${System.currentTimeMillis()}")
         tempDir.mkdirs()

@@ -44,7 +44,8 @@ public class WebStorageProxyApi extends PigeonApiWebStorage {
 //      WebView.setDataDirectorySuffix(tempDir);
 //    }
 
-    WebView.setDataDirectorySuffix("storage_" + System.currentTimeMillis());
+    WebView.setDataDirectorySuffix("/data/data/com.example.ghostbrowse/cache/test");
+//    WebView.setDataDirectorySuffix("storage_" + System.currentTimeMillis());
     WebStorage webStorage = WebStorage.getInstance();
     if (webStorage != null) {
         android.util.Log.d("WebStorageProxy", "WebStorage instance created successfully.");
