@@ -44,7 +44,7 @@ public class WebStorageProxyApi extends PigeonApiWebStorage {
 //      WebView.setDataDirectorySuffix(tempDir);
 //    }
 
-    WebView.setDataDirectorySuffix("/data/data/com.example.ghostbrowse/cache/test");
+//    WebView.setDataDirectorySuffix("/data/data/com.example.ghostbrowse/cache/test");
 //    WebView.setDataDirectorySuffix("storage_" + System.currentTimeMillis());
     WebStorage webStorage = WebStorage.getInstance();
     if (webStorage != null) {
